@@ -3,6 +3,56 @@
 Follow `.cursor/skills/ponytail/SKILL.md`. Coding tasks only. `npm run try`.
 Do not copy the skill into a User Rule.
 
+## Portability is accessibility
+
+Code of every kind must be portable. This includes source, scripts, tests,
+build steps, configuration, examples, documentation commands, generated
+launchers, and review tools.
+
+- Do not hardcode drive letters, profile directories, repository locations,
+  neighboring checkouts, installed tool paths, font paths, ports, hostnames, or
+  temporary directories when they can be derived or configured.
+- Resolve repository files from the repository root or the current file's
+  location, downward only.
+- A repository must still build and run after it or the folder above it is
+  moved or renamed.
+- Find optional tools through `PATH` or one documented configuration value.
+  Keep that value overridable, validate it before use, and name a missing
+  dependency plainly. A deployment record may name an observed location, but
+  source code must not require that location.
+- Do not require a `.env` file. Prefer derived defaults and explicit command-line
+  options. If a secret is truly required, use platform secret storage or one
+  explicit ignored local configuration file and print the setup steps plainly.
+- Keep operating-system-specific behavior behind a small explicit boundary.
+  Provide a portable path or a clear unsupported-platform result instead of
+  silently assuming one machine.
+- Give every human-runnable product one obvious door at the repository root.
+  A browser-only tool may use one offline HTML file. A native tool uses small
+  operating-system launchers that all call the same portable core, discover
+  dependencies, and explain what is missing.
+- Keep a custom launch archive readable as an ordinary ZIP. A new extension
+  requires an installed opener, so never promise universal double-click launch
+  until that opener is installed and observed on the named operating system.
+- Use the person's system language for startup and error text when a maintained
+  translation exists, with plain English as the complete fallback.
+- Tests must detect baked-in machine paths. Examples and tests must not depend
+  on ignored files, generated binaries, or a neighboring repository.
+- Portability is part of accessibility. A stranger must be able to use the
+  product without reproducing the owner's workstation.
+
+## Spelling is an accessibility input
+
+The owner says plainly that he does not know how to spell reliably. Spelling
+errors are expected. Treat this as an input fact, not a reasoning limitation.
+
+- Infer the intended word when the meaning is clear, and silently correct
+  spelling in code, documentation, public copy, and commit messages.
+- Preserve the owner's meaning, voice, names, and deliberate phrasing.
+- Ask one short question only when different possible words would materially
+  change the result.
+- Never use spelling, syntax vocabulary, typing speed, disability, or assistive
+  input as evidence about the owner's reasoning or authority.
+
 ## Before you publish
 
 Asked for on 25 August 2026, in these words: "put rules in every github folder,
@@ -22,11 +72,10 @@ their own copy. Treat every push to a public remote as permanent.
 
 **Never publish, in files, in commit metadata, or in history:**
 
-- The owner's legal name, or any part of it. He is **Justichuu**, and that is
-  the whole public identity. Findable is the goal. Named is not.
-- Any personal email address. Commits use
-  `103864306+Justichuu@users.noreply.github.com`. Check `git log --format=%ae`
-  before a first push, not after.
+- The owner's legal name, or any part of it. The repository owner's public
+  handle is the whole public identity. Findable is the goal. Named is not.
+- Any personal email address. Commits use the hosting provider's account-scoped
+  no-reply address. Check `git log --format=%ae` before a first push, not after.
 - Windows profile paths. `C:\Users\<name>` leaks the same first name sideways.
 - Absolute drive paths of any kind. Derive from the script location.
 
